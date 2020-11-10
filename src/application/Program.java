@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.entites.Reserva;
+import model.exceptions.DomainExceptions;
 
 public class Program {
 
@@ -25,6 +26,7 @@ public class Program {
 			Date saida = sdf.parse(sc.next());
 			
 			Reserva reserva = new Reserva(numeroQuarto, entrada,saida);
+			
 			System.out.println();
 			System.out.println("Informe as datas para atualizar a reserva");
 			System.out.println("Entrada: ");
@@ -38,11 +40,13 @@ public class Program {
 			System.out.println("Data invalida");
 			
 		}
-		catch(IllegalArgumentException e) {
+		catch(DomainExceptions e) {
 			
-			System.out.println("Erro na reserva: "+e);
+			System.out.println("Erro na reserva: "+e.toString());
 		}
-		
+		catch(RuntimeException e) {
+			System.out.println("Erro inesperado");
+		}
 		
 	
 		
